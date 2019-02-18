@@ -1,5 +1,4 @@
 require 'bcrypt'
-require 'json'
 require './models/user'
 
 class Delete
