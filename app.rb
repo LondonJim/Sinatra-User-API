@@ -1,37 +1,39 @@
-require 'bcrypt'
 require 'json'
 require 'sinatra/base'
 require 'sinatra/activerecord'
-require './models/user'
+require './models/signup'
+require './models/login'
+require './models/delete'
 
 class UsersAPI < Sinatra::Base
 
-  include BCrypt
-
   post '/users/signup' do
-    data = JSON.parse(request.body.read)
-    encrypted_pw = Password.create(data["password"])
-    User.create(:name => data["name"], :email => data["email"], :password => encrypted_pw)
+    body_data = JSON.parse(request.body.read)
+    Signup.create(body_data)
+    content_type :json
+    { message: "user created" }.to_json
   end
 
   post '/users/login' do
-    data = JSON.parse(request.body.read)
-    user = User.find_by(:name => data["name"], :email => data["email"])
-    if Password.new(user[:password]) == data["password"]
-      puts "VALID"
+    body_data = JSON.parse(request.body.read)
+    if LogIn.check?(body_data)
+      content_type :json
+      { message: "valid login" }.to_json
     else
-      puts "NOT VALID"
+      content_type :json
+      { message: "not authorised" }.to_json
     end
   end
 
   delete '/users/delete/:id' do
-    data = JSON.parse(request.body.read)
-    user = User.find_by(:name => data["name"], :email => data["email"])
-    if Password.new(user[:password]) == data["password"] && user.id = params[:id]
-      puts "DELETED"
-      User.destroy(params[:id])
+    body_data = JSON.parse(request.body.read)
+    params_data = params[:id]
+    if Delete.check?(body_data, params_data)
+      content_type :json
+      { message: "user deleted" }.to_json
     else
-      puts "USER DETAILS NOT CORRECT"
+      content_type :json
+      { message: "not authorised" }.to_json
     end
   end
 
