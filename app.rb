@@ -9,7 +9,7 @@ class UsersAPI < Sinatra::Base
 
   post '/users/signup' do
     body_data = JSON.parse(request.body.read)
-    Signup.create(body_data)
+    SignUp.create(body_data)
     content_type :json
     { message: "user created" }.to_json
   end
