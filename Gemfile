@@ -2,12 +2,13 @@ source 'https://rubygems.org'
 
 ruby '2.5.3'
 
+gem 'activerecord'
 gem 'bcrypt'
 gem 'dotenv'
 gem 'pg'
 gem 'rake'
 gem 'sinatra'
-gem 'sinatra-flash'
+gem 'sinatra-activerecord'
 
 group :test do
   gem 'capybara'

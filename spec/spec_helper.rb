@@ -1,10 +1,10 @@
-ENV['RACK_ENV'] = 'test'
+# ENV['RACK_ENV'] = 'test'
 
 require './app'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-require 'test_database_setup'
+# require 'test_database_setup'
 
 Capybara.app = UsersAPI
 

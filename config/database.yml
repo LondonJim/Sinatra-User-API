@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: users_test
+  pool: 2
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: users
+  pool: 2
