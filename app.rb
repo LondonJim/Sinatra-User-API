@@ -25,7 +25,8 @@ class UsersAPI < Sinatra::Base
     body_data = JSON.parse(request.body.read)
     user = User.find_by(:name => body_data["name"], :email => body_data["email"])
     if Password.new(user[:password]) == body_data["password"]
-      { message: "valid login", token: token(user[:name]) }.to_json
+      jwt_token = token(user[:name])
+      { message: "valid login", token: jwt_token }.to_json
     else
       { message: "not authorised" }.to_json
     end
