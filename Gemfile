@@ -9,6 +9,7 @@ gem 'pg'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
+gem 'jwt'
 
 group :test do
   gem 'capybara'

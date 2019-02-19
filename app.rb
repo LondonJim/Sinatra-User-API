@@ -1,5 +1,7 @@
+require 'dotenv'
 require 'bcrypt'
 require 'json'
+require 'jwt'
 require 'sinatra/base'
 require 'sinatra/activerecord'
 require './models/user'
@@ -23,7 +25,7 @@ class UsersAPI < Sinatra::Base
     body_data = JSON.parse(request.body.read)
     user = User.find_by(:name => body_data["name"], :email => body_data["email"])
     if Password.new(user[:password]) == body_data["password"]
-      { message: "valid login" }.to_json
+      { message: "valid login", token: token(user[:name]) }.to_json
     else
       { message: "not authorised" }.to_json
     end
@@ -39,6 +41,19 @@ class UsersAPI < Sinatra::Base
     else
       { message: "not authorised" }.to_json
     end
+  end
+
+  def token(user_name)
+    JWT.encode payload(user_name), ENV['JWT_SECRET'], 'HS256'
+  end
+
+  def payload(user_name)
+    {
+      exp: Time.now.to_i + 60 * 60,
+      user: {
+        user: user_name
+      }
+    }
   end
 
 end
