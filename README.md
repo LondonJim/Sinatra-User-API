@@ -13,6 +13,10 @@ Using ActiveRecord ORM, BCrypt, PostgreSQL (and eventually JWTs) to create a use
 
 `rackup` go to `localhost:9292`
 
+create a `.env` file in the root directory and you own secret to be added to the jwt:
+
+`JWT_SECRET=example_secret_here`
+
 ## Database setup
 
 PostgreSQL is used for the database setup. A database named chitter and a chitter_test are used with peeps and users tables. These will need to be setup on your local machine currently. In `psql` enter the following commands:
