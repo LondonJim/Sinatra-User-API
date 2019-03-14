@@ -1,12 +1,11 @@
-# ENV['RACK_ENV'] = 'test'
+ENV['RACK_ENV'] = 'development'
 
 require './app'
-require 'capybara/rspec'
+require 'rack/test'
 require 'simplecov'
 require 'simplecov-console'
+require 'sinatra/base'
 # require 'test_database_setup'
-
-Capybara.app = UsersAPI
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -14,6 +13,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 SimpleCov.start
 
 RSpec.configure do |config|
+
+  config.include Rack::Test::Methods
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
