@@ -3,24 +3,23 @@ require 'json'
 describe "sign up" do
 
   def app
-    UsersAPI.new
+    @app = UsersAPI.new
   end
 
-  let(:body) { { name: "test_user",
-                 email: "test_user@test_user.com",
+  let(:body) { { name: "test_useruser",
+                 email: "testuser@testuseruser.com",
                  password: "test_user_password"
                }.to_json }
 
-  before(:each) do
-    post '/users/signup', body, { 'CONTENT_TYPE' => 'application/json' }
-  end
-
   it "returns sign up json response" do
-    expect(last_response).to be_ok
+    post '/users/signup', body, { 'CONTENT_TYPE' => 'application/json' }
+    expect(last_response.body).to eq({ "message": "user created" }.to_json)
   end
 
-
-
-
+  # it "returns sign up log in json response" do
+  #   post '/users/signup', body, { 'CONTENT_TYPE' => 'application/json' }
+  #   post '/users/login', body, { 'CONTENT_TYPE' => 'application/json' }
+  #   expect(last_response).to eq('sausage')
+  # end
 
 end

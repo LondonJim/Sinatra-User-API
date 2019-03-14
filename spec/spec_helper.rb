@@ -5,6 +5,7 @@ require 'rack/test'
 require 'simplecov'
 require 'simplecov-console'
 require 'sinatra/base'
+require 'test_database_setup'
 # require 'test_database_setup'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
@@ -13,6 +14,10 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 SimpleCov.start
 
 RSpec.configure do |config|
+
+  config.before(:each) do
+    test_database_setup
+  end
 
   config.include Rack::Test::Methods
 
