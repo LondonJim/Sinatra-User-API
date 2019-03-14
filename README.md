@@ -27,8 +27,15 @@ CREATE DATABASE "user"
 
 CREATE DATABASE "user_test"
 
+## Testing
 
-### Instructions:
+Tests written with `RSpec 3.8`
+
+`rspec` from command line executes tests (initial databases must be set up first)
+
+
+
+### API Instructions:
 ----
 Sign up a new user
 
@@ -46,7 +53,7 @@ note: passwords are stored encrypted using bcrypt
 
 ----
 
-Log in a user
+Log in a user (returns a JWT with message json)
 
 `POST` `/users/login`
 
