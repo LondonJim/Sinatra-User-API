@@ -8,6 +8,8 @@ require './models/user'
 
 class UsersAPI < Sinatra::Base
 
+  set :show_exceptions, false
+
   include BCrypt
 
   post '/users/signup' do
@@ -55,6 +57,10 @@ class UsersAPI < Sinatra::Base
         user: user_name
       }
     }
+  end
+
+  error 500 do
+    { message: "not authorised" }.to_json
   end
 
 end
