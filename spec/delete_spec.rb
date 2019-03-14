@@ -11,7 +11,7 @@ describe "log in" do
                  password: "test_user_password"
                }.to_json }
 
-  it "returns log in json response" do
+  it "returns delete user json response" do
     post '/users/signup', body, { 'CONTENT_TYPE' => 'application/json' }
     post '/users/login', body, { 'CONTENT_TYPE' => 'application/json' }
     delete '/users/delete/1', body, { 'CONTENT_TYPE' => 'application/json' }
