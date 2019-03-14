@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = 'development'
+ENV['JWT_SECRET'] = "testing"
 
 require './app'
 require 'rack/test'
@@ -6,7 +7,6 @@ require 'simplecov'
 require 'simplecov-console'
 require 'sinatra/base'
 require 'test_database_setup'
-# require 'test_database_setup'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
