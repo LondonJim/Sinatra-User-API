@@ -19,7 +19,7 @@ create a `.env` file in the root directory and you own secret to be added to the
 
 ## Database setup
 
-PostgreSQL is used for the database setup. A database named chitter and a chitter_test are used with peeps and users tables. These will need to be setup on your local machine currently. In `psql` enter the following commands:
+PostgreSQL is used for the database setup. A database named user and a user_test are used with users table. These will need to be setup on your local machine currently. In `psql` enter the following commands:
 
 Database creation for development and production:
 
