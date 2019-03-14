@@ -24,9 +24,12 @@ describe "log in" do
   end
 
   it "returns not authorised delete user json response" do
-    post '/users/signup', body, { 'CONTENT_TYPE' => 'application/json' }
-    post '/users/login', body, { 'CONTENT_TYPE' => 'application/json' }
     delete '/users/delete/1', wrong_pw_body, { 'CONTENT_TYPE' => 'application/json' }
+    expect(last_response.body).to eq({ "message": "not authorised" }.to_json )
+  end
+
+  it "returns not authorised 500 status delete user json response" do
+    delete '/users/delete/3', body, { 'CONTENT_TYPE' => 'application/json' }
     expect(last_response.body).to eq({ "message": "not authorised" }.to_json )
   end
 
