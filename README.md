@@ -1,8 +1,6 @@
 # User API in Sinatra
 
-Using ActiveRecord ORM, BCrypt, PostgreSQL (and eventually JWTs) to create a user API
-
-* work in progress
+Using ActiveRecord ORM, BCrypt, PostgreSQL and JWTs to create a user API
 
 
 ## Installation
